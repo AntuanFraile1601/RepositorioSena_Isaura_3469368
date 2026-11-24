@@ -1,0 +1,458 @@
+/* Colores de toda la página: si quieres cambiar uno, lo cambias solo aquí */
+:root {
+    --turquesa: #12a5b0;
+    --turquesa-claro: #d8f1f3;
+    --azul-oscuro: #0f2a43;
+    --fondo-claro: #f3f8fb;
+}
+
+/* Quita los espacios por defecto del navegador y hace que el padding
+   no agrande las cajas */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: var(--fondo-claro);
+    color: var(--azul-oscuro);
+    line-height: 1.5;
+}
+
+/* Evita que una imagen sea más ancha que su contenedor (scroll horizontal en celular) */
+img {
+    max-width: 100%;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+
+/* Fase 3: barra de navegación */
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 40px;
+    background-color: #ffffff;
+    border-bottom: 1px solid #dbe6ec;
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: var(--turquesa);
+}
+
+nav {
+    display: flex;
+    gap: 10px;
+}
+
+nav a {
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-weight: bold;
+}
+
+/* El orden importa: si dos reglas tienen la misma fuerza, gana la última.
+   Por eso :hover va antes que el enlace activo; así Inicio no cambia de color */
+nav a:hover {
+    background-color: var(--turquesa-claro);
+}
+
+nav a:first-child {
+    background-color: var(--turquesa);
+    color: #ffffff;
+}
+
+
+/* Fase 4: presentación principal */
+
+#inicio {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    padding: 40px;
+    background-color: var(--fondo-claro); /* se ve si la imagen no carga */
+    background-image: url("../img/banner.png"); /* la ruta sale de css/ con ../ */
+    background-size: cover;
+    background-position: center right;
+    background-repeat: no-repeat;
+}
+
+#inicio img {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    border: 4px solid var(--turquesa);
+    object-fit: cover;
+    flex-shrink: 0; /* evita que la foto se aplaste cuando falta espacio */
+}
+
+#inicio h1 {
+    font-size: 2.2rem;
+    color: var(--azul-oscuro);
+}
+
+#inicio h2 {
+    width: fit-content; /* la línea mide lo mismo que el texto */
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    font-size: 1.3rem;
+    color: var(--turquesa);
+    border-bottom: 3px solid var(--turquesa);
+}
+
+#inicio p {
+    max-width: 420px;
+    margin-bottom: 8px;
+}
+
+.botones {
+    display: flex;
+    gap: 12px;
+    margin-top: 16px;
+}
+
+.botones a {
+    padding: 10px 22px;
+    border: 2px solid var(--turquesa);
+    border-radius: 8px;
+    font-weight: bold;
+}
+
+.botones a:first-child {
+    background-color: var(--turquesa);
+    color: #ffffff;
+}
+
+.botones a:last-child {
+    background-color: #ffffff;
+    color: var(--turquesa);
+}
+
+
+/* Fase 5: dos columnas con Grid */
+
+.contenedor {
+    display: grid;
+    /* Izquierda: mínimo 250px y crece 1 parte. Derecha: 3 partes.
+       minmax(0, 3fr) evita que el contenido ensanche la columna */
+    grid-template-columns: minmax(250px, 1fr) minmax(0, 3fr);
+    gap: 24px;
+    align-items: start;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 30px 20px;
+}
+
+/* Cada columna apila sus tarjetas en vertical */
+aside,
+main {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Tarjetas de las dos columnas */
+aside section,
+main section {
+    padding: 24px;
+    background-color: #ffffff;
+    border: 1px solid #dbe6ec;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(15, 42, 67, 0.08);
+}
+
+/* Título de cada tarjeta. Es flex para que el icono quede al lado cuando se agregue */
+.contenedor h2 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    font-size: 1.1rem;
+    color: var(--azul-oscuro);
+    border-bottom: 2px solid var(--turquesa);
+}
+
+.contenedor h3 {
+    font-size: 1rem;
+}
+
+
+/* Fase 6: columna izquierda */
+
+#contacto ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+#contacto li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Tamaño de los iconos, para cuando se agreguen */
+#contacto li img {
+    width: 20px;
+    height: 20px;
+}
+
+#habilidades h3 {
+    margin: 14px 0 8px;
+}
+
+#habilidades ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+/* Las etiquetas de habilidades, de proyectos y las fechas comparten el mismo estilo */
+#habilidades li,
+#proyectos li,
+.fecha {
+    background-color: var(--turquesa-claro);
+    border-radius: 20px;
+    font-weight: bold;
+}
+
+#habilidades li {
+    padding: 5px 14px;
+    font-size: 0.85rem;
+}
+
+
+/* Fase 7: columna derecha */
+
+main section:first-child p {
+    line-height: 1.6;
+}
+
+/* Experiencia y formación: línea de tiempo vertical */
+#experiencia article,
+#estudios article {
+    position: relative; /* permite ubicar el punto con position: absolute */
+    padding: 0 0 20px 24px;
+    border-left: 2px solid var(--turquesa);
+}
+
+#experiencia article:last-child,
+#estudios article:last-child {
+    padding-bottom: 0;
+}
+
+/* Punto de la línea de tiempo */
+#experiencia article::before,
+#estudios article::before {
+    content: "";
+    position: absolute;
+    left: -9px;
+    top: 4px;
+    width: 16px;
+    height: 16px;
+    background-color: #ffffff;
+    border: 3px solid var(--turquesa);
+    border-radius: 50%;
+}
+
+#experiencia h3,
+#estudios h3 {
+    font-size: 1rem;
+}
+
+/* Empresa a la izquierda y fecha a la derecha */
+#experiencia article p,
+#estudios article p {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
+#experiencia ul {
+    margin-top: 8px;
+    padding-left: 20px;
+    list-style: disc;
+}
+
+#experiencia li {
+    margin-bottom: 4px;
+    font-size: 0.9rem;
+}
+
+.fecha {
+    padding: 3px 12px;
+    font-size: 0.8rem;
+    color: #0b6f77;
+    white-space: nowrap;
+}
+
+/* Proyectos: tres tarjetas con Grid */
+#proyectos {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+}
+
+/* El título ocupa las tres columnas, de la primera a la última línea */
+#proyectos h2 {
+    grid-column: 1 / -1;
+    margin-bottom: 0;
+}
+
+#proyectos article {
+    padding: 12px;
+    border: 1px solid #dbe6ec;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(15, 42, 67, 0.08);
+}
+
+#proyectos img {
+    width: 100%;
+    height: 110px;
+    margin-bottom: 10px;
+    object-fit: cover;
+    border-radius: 6px;
+}
+
+#proyectos h3 {
+    margin-bottom: 6px;
+    font-size: 0.95rem;
+}
+
+#proyectos p {
+    margin-bottom: 10px;
+    font-size: 0.85rem;
+}
+
+#proyectos ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+#proyectos li {
+    padding: 3px 10px;
+    font-size: 0.75rem;
+}
+
+
+/* Fase 8: pie de página */
+
+footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    padding: 20px 40px;
+    background-color: var(--azul-oscuro);
+    color: #ffffff;
+}
+
+/* margin-right: auto empuja los enlaces hacia la derecha */
+footer p {
+    margin-right: auto;
+}
+
+
+/* Fase 9: adaptación a tabletas */
+
+@media (max-width: 900px) {
+    /* Las dos columnas pasan a una sola */
+    .contenedor {
+        grid-template-columns: 1fr;
+    }
+
+    header,
+    #inicio,
+    footer {
+        padding-left: 24px;
+        padding-right: 24px;
+    }
+}
+
+
+/* Fase 9: adaptación a celulares */
+
+@media (max-width: 600px) {
+    header {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    nav {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    /* Foto arriba y texto abajo */
+    #inicio {
+        flex-direction: column;
+        padding: 30px 20px;
+        text-align: center;
+    }
+
+    #inicio img {
+        width: 140px;
+        height: 140px;
+    }
+
+    #inicio h1 {
+        font-size: 1.7rem;
+    }
+
+    /* Centra los elementos que tienen ancho limitado */
+    #inicio h2,
+    #inicio p {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .botones {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    aside section,
+    main section {
+        padding: 18px;
+    }
+
+    /* Empresa arriba y fecha debajo, para que no se aprieten */
+    #experiencia article p,
+    #estudios article p {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+    }
+
+    #proyectos {
+        grid-template-columns: 1fr;
+    }
+
+    #proyectos img {
+        height: 160px;
+    }
+
+    footer {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    footer p {
+        margin-right: 0;
+    }
+}
